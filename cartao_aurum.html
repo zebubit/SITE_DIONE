@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão Aurum Visa | Soberania Financeira</title>
+
+    <meta property="og:title" content="Cartão Aurum Visa | Dione Folador">
+    <meta property="og:description" content="O fim do rastro financeiro. Adquira seu cartão sem KYC e sem CPF.">
+    <meta property="og:image" content="https://dionefolador.com/site3.webp">
+    
+    <link rel="icon" type="image/png" href="SITE1.webp">
+    <link rel="apple-touch-icon" href="SITE1.webp">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #000; 
+            color: #fff; 
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+
+        /* CORREÇÃO TÉCNICA DO FUNDO: Otimizado para MacBook e Smartphones */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./zebuoficial.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .glass { 
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-gold { 
+            background: linear-gradient(to right, #d97706, #f59e0b); 
+            color: #000;
+            font-weight: 900;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.5); 
+        }
+
+        input::placeholder { color: rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 flex flex-col items-center">
+    <div id="video-background"></div>
+
+    <div class="max-w-4xl mx-auto text-center mb-10">
+        <h1 class="text-5xl md:text-6xl font-serif font-bold text-white mb-2 italic">Aurum Visa Card</h1>
+        <p class="text-amber-500 font-bold text-xs uppercase tracking-[0.5em]">O Cartão Intraçável da Aurum</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 w-full text-center">
+        <div class="glass p-6 rounded-3xl">
+            <h4 class="text-amber-500 font-black text-xs uppercase mb-2">Zero KYC</h4>
+            <p class="text-gray-200 text-[13px] leading-relaxed font-light">Sua identidade é sua. Adquira e utilize sem enviar documentos ou fotos.</p>
+        </div>
+        <div class="glass p-6 rounded-3xl">
+            <h4 class="text-amber-500 font-black text-xs uppercase mb-2">Sem CPF</h4>
+            <p class="text-gray-200 text-[13px] leading-relaxed font-light">Desvinculado do sistema estatal. Liberdade total para movimentar seus ganhos.</p>
+        </div>
+        <div class="glass p-6 rounded-3xl">
+            <h4 class="text-amber-500 font-black text-xs uppercase mb-2">Aceitação Global</h4>
+            <p class="text-gray-200 text-[13px] leading-relaxed font-light">Bandeira Visa. Use em qualquer lugar do mundo ou em compras online.</p>
+        </div>
+    </div>
+
+    <div class="max-w-xl w-full glass p-8 rounded-[2.5rem] text-center border-amber-500/20 mb-8">
+        <h3 class="text-white text-xl font-bold mb-1">Solicitar Acesso ao Cartão</h3>
+        <p class="text-gray-400 text-[10px] mb-8 uppercase tracking-widest font-light italic">Passo Único: Identificação Segura</p>
+        
+        <div class="space-y-4">
+            <input type="text" id="lead-nome" placeholder="Nome ou Codinome" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition text-white text-sm">
+            <input type="email" id="lead-email" placeholder="E-mail para contato" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition text-white text-sm">
+            <input type="text" id="lead-whatsapp" placeholder="WhatsApp para contato" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl focus:border-amber-500 outline-none transition text-white text-sm">
+   
+            <button onclick="enviarSolicitacaoAurum()" class="btn-gold w-full py-5 rounded-xl uppercase tracking-[0.2em] shadow-2xl font-black text-sm">
+                🚀 Obter Meu Cartão Aurum
+            </button>
+        </div>
+
+        <a href="Portuguese. AURUM Guest Presentation.pdf" target="_blank" rel="noopener noreferrer" 
+           class="mt-6 text-gray-500 hover:text-amber-500 text-[10px] uppercase tracking-[0.1em] transition-all flex items-center justify-center gap-2 group">
+            <svg class="w-4 h-4 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Apresentação e Eventos Globais (PDF)
+        </a>
+    </div>
+
+    <div class="mt-8 glass py-3 px-8 rounded-full border-amber-500/20">
+        <p class="text-amber-500 font-bold text-[10px] uppercase tracking-[0.3em]">A ZEBUBIT PREZA PELA SUA LIBERDADE FINANCEIRA</p>
+    </div>
+
+<script>
+    // 1. ENDEREÇO DA SUA PLANILHA (Sincronizado com o seu Google Apps Script)
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbztx3iM1DTrSJjMvfeZywDnI2k64NRJx-FX1J9rvmCduLi8iDTCEB-0aCtlWogQH6z8bA/exec';
+
+    function enviarSolicitacaoAurum() {
+        const nome = document.getElementById('lead-nome').value;
+        const email = document.getElementById('lead-email').value;
+        const whatsapp = document.getElementById('lead-whatsapp').value;
+
+        if(!nome || !email || !whatsapp) {
+            alert('Dione solicita: Por favor, preencha todos os campos para prosseguir com a soberania financeira.');
+            return;
+        }
+
+        // 2. REGISTRO NO ARQUIVO DE LEADS (PLANILHA DRIVE)
+        const params = new URLSearchParams();
+        params.append('nome', nome);
+        params.append('email', email);
+        params.append('whatsapp', whatsapp);
+        params.append('produto', 'CARTÃO AURUM (SOLICITAÇÃO)');
+
+        // Disparo para a planilha em segundo plano
+        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: params })
+        .catch(err => console.log("Erro de rede, mas seguindo para o portal..."));
+
+        // 3. REDIRECIONAMENTO SOBERANO (Com blindagem aplicada)
+        const meuLinkIndicacao = 'https://backoffice.aurum.foundation/u/U20120'; 
+
+        // Abrimos o portal com segurança total: 'noopener,noreferrer'
+        window.open(meuLinkIndicacao, '_blank', 'noopener,noreferrer');
+
+        // Feedback imediato no formulário
+        const btn = document.querySelector('button[onclick="enviarSolicitacaoAurum()"]');
+        btn.innerHTML = "SOLICITAÇÃO ENVIADA!";
+        // Ajuste visual para indicar sucesso
+        btn.style.background = "#059669"; 
+        btn.style.color = "#ffffff";
+    }
+</script>
+</body>
+</html>
