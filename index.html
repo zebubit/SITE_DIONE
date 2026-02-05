@@ -1197,12 +1197,15 @@ html {
             <h4 class="text-xl font-serif text-white italic">Como deseja finalizar?</h4>
             <div class="grid gap-4">
                 <button onclick="exibirPixDireto()" class="p-5 bg-black/60 border border-white/5 rounded-2xl hover:border-amber-500/50 text-white font-bold transition">⚡ PIX (Manual)</button>
+                
                 <button onclick="finalizarComCartao()" class="p-5 bg-black/60 border border-white/5 rounded-2xl hover:border-amber-500/50 text-white font-bold transition">💳 Cartão (Mercado Pago)</button>
                 
-                <button onclick="alertarCrypto()" class="p-5 bg-black/60 border border-white/5 rounded-2xl hover:border-orange-500/50 text-white font-bold transition flex flex-col items-center gap-1 group">
+                <a href="https://wa.me/5534993421500?text=Olá%20Dione,%20quero%20finalizar%20minha%20compra%20pagando%20com%20Criptomoedas%20(BTC/USDT)." 
+                   target="_blank" 
+                   class="p-5 bg-black/60 border border-white/5 rounded-2xl hover:border-orange-500/50 text-white font-bold transition flex flex-col items-center gap-1 group no-underline">
                     <span class="text-orange-500 group-hover:scale-110 transition">₿ BTC / USDT</span>
-                    <span class="text-[8px] uppercase tracking-tighter text-gray-500">Em implementação técnica</span>
-                </button>
+                    <span class="text-[8px] uppercase tracking-tighter text-gray-400">Pagar via Transação Direta</span>
+                </a>
             </div>
             <button onclick="fecharModais()" class="text-gray-600 text-[10px] uppercase font-bold hover:text-white transition">Cancelar</button>
         </div>
