@@ -387,42 +387,33 @@ html {
     );
 }
 
-/* NOVO: BARRA DE PREÇOS (TICKER PREMIUM) */
+/* NOVO: BARRA DE PREÇOS (TICKER PREMIUM NO RODAPÉ) */
 #ticker-soberano {
     position: fixed;
-    top: 0;
+    bottom: 0; /* Fixa na base da tela */
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Transparência para o efeito vidro */
-    backdrop-filter: blur(15px); /* Desfoque premium atrás da barra */
+    background: rgba(0, 0, 0, 0.85); /* Vidro escuro */
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    border-top: 1px solid rgba(59, 130, 246, 0.3); /* Linha agora no topo da barra */
     z-index: 10000;
-    padding: 10px 0;
+    padding: 12px 0;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    transition: all 0.4s ease; /* Suaviza a interação */
-}
-
-/* Efeito ao passar o mouse na barra */
-#ticker-soberano:hover {
-    background: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid #3b82f6;
+    transition: all 0.4s ease;
 }
 
 .coin-box {
     display: flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-/* Moeda "ganha vida" ao passar o mouse */
 .coin-box:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+    transform: translateY(-3px); /* Efeito de flutuar ao passar o mouse */
 }
 
 .coin-name { 
@@ -435,18 +426,11 @@ html {
 .price-up { color: #22c55e; font-family: 'Courier New', monospace; font-size: 12px; }
 .price-down { color: #ef4444; font-family: 'Courier New', monospace; font-size: 12px; }
 
-/* Ajuste para o site não ficar por baixo da barra */
-body { padding-top: 50px !important; }
+/* IMPORTANTE: Resetamos o topo e damos espaço no fundo do site */
+body { padding-top: 0 !important; padding-bottom: 60px !important; }
 
 </style>
 <body class="bg-black">
-    <div id="ticker-soberano">
-    <div class="coin-box"><span class="coin-name">BTC</span> <span id="p-btc">...</span></div>
-    <div class="coin-box"><span class="coin-name">ETH</span> <span id="p-eth">...</span></div>
-    <div class="coin-box"><span class="coin-name">SOL</span> <span id="p-sol">...</span></div>
-    <div class="coin-box"><span class="coin-name">BNB</span> <span id="p-bnb">...</span></div>
-    <div class="coin-box"><span class="coin-name">XRP</span> <span id="p-xrp">...</span></div>
-</div>
 
     <div id="spotlight"></div>
 
@@ -1614,5 +1598,14 @@ body { padding-top: 50px !important; }
     carregarPrecos();
     setInterval(carregarPrecos, 60000);
 </script>
+
+    <div id="ticker-soberano">
+    <div class="coin-box"><span class="coin-name">BTC</span> <span id="p-btc">...</span></div>
+    <div class="coin-box"><span class="coin-name">ETH</span> <span id="p-eth">...</span></div>
+    <div class="coin-box"><span class="coin-name">SOL</span> <span id="p-sol">...</span></div>
+    <div class="coin-box"><span class="coin-name">BNB</span> <span id="p-bnb">...</span></div>
+    <div class="coin-box"><span class="coin-name">XRP</span> <span id="p-xrp">...</span></div>
+</div>
+    
 </body>
 </html>
