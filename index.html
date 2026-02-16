@@ -429,7 +429,30 @@ html {
 .price-up { color: #22c55e; font-family: 'Courier New', monospace; font-size: 12px; }
 .price-down { color: #ef4444; font-family: 'Courier New', monospace; font-size: 12px; }
 
-/* IMPORTANTE: Resetamos o topo e damos espaço no fundo do site */
+/* NOTIFICAÇÃO DE PROVA SOCIAL (BALÃO QUE APARECE) */
+#social-proof {
+    position: fixed;
+    bottom: 60px; /* Fica acima da barra de preços */
+    left: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #3b82f6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9998;
+    transform: translateX(-150%); /* Escondido */
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+#social-proof.show { transform: translateX(0); } /* Entra na tela */
+
+.proof-text { font-size: 11px; color: #fff; }
+.proof-text b { color: #3b82f6; }
+
+/* IMPORTANTE: Espaço no fundo para o Ticker */
 body { padding-bottom: 50px !important; }
 
 </style>
@@ -1597,10 +1620,45 @@ body { padding-bottom: 50px !important; }
         }
     }
 
-    // Inicia a busca e atualiza a cada 60 segundos
+    // --- LÓGICA DA PROVA SOCIAL (NOMES ALEATÓRIOS) ---
+    const nomes = ["Ricardo M.", "Ana Paula S.", "Marcos Oliveira", "Juliana F.", "Bruno Costa", "Carla Menezes", "Thiago Souza", "Felipe D.", "Patrícia G."];
+    const acoes = ["acaba de liberar o acesso.", "solicitou o Cartão Aurum.", "entrou no Hub de Elite.", "garantiu a vaga no Hub."];
+
+    function mostrarProvaSocial() {
+        const proof = document.getElementById('social-proof');
+        const nomeEl = document.getElementById('proof-name');
+        const acaoEl = document.getElementById('proof-action');
+
+        const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
+        const acaoAleatoria = acoes[Math.floor(Math.random() * acoes.length)];
+
+        nomeEl.innerHTML = `<b>${nomeAleatorio}</b>`;
+        acaoEl.innerHTML = acaoAleatoria;
+
+        proof.classList.add('show');
+
+        setTimeout(() => {
+            proof.classList.remove('show');
+        }, 6000);
+    }
+
+    // Inicia os processos
     carregarPrecos();
     setInterval(carregarPrecos, 60000);
+
+    // Ciclo da Prova Social (inicia em 4s e repete a cada 18s)
+    setTimeout(() => {
+        mostrarProvaSocial();
+        setInterval(mostrarProvaSocial, 18000);
+    }, 4000);
 </script>
+
+    <div id="social-proof">
+        <div class="proof-text">
+            <span id="proof-name">...</span><br>
+            <small id="proof-action">carregando acesso...</small>
+        </div>
+    </div>
 
     <div id="ticker-soberano">
     <div class="coin-box"><span class="coin-name">BTC</span> <span id="p-btc">...</span></div>
