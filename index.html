@@ -1647,20 +1647,17 @@ body { padding-bottom: 80px !important; }
         }
     }
 
-    // --- LÓGICA DA PROVA SOCIAL (FOTOS E NOMES DINÂMICOS) ---
-    const provasSociais = [
-        { n: "Ricardo M.", a: "acaba de comprar o combo total.", img: "1" },
-        { n: "Ana Paula S.", a: "solicitou o Cartão Aurum.", img: "2" },
-        { n: "Marcos Oliveira", a: "pediu o ebook free.", img: "3" },
-        { n: "Juliana F.", a: "garantiu 4 sessões de mentoria.", img: "4" },
-        { n: "Bruno Costa", a: "acabou de acessar a revista.", img: "5" },
-        { n: "Carla Menezes", a: "quer saber sobre o cartao Ether.fi.", img: "6" },
-        { n: "Felipe D.", a: "acaba de comprar Soberania Digital.", img: "7" },
-        { n: "Patrícia G.", a: "Quer saber mais sobre Mentoria.", img: "8" },
-        { n: "Thiago Souza", a: "acaba de comprar o combo total.", img: "9" },
-        { n: "Gabriel S.", a: "liberou o limite Black agora.", img: "10" },
-        { n: "Luciana K.", a: "entrou para a Mentoria Individual.", img: "11" }
+    // --- LÓGICA DA PROVA SOCIAL (ÍCONES DE ATIVOS - VERSÃO SOBERANA) ---
+    const iconesAtivos = [
+        "https://cdn-icons-png.flaticon.com/512/25/25228.png", // Cifrão/Grana
+        "https://cdn-icons-png.flaticon.com/512/5968/5968260.png", // Bitcoin
+        "https://cdn-icons-png.flaticon.com/512/7016/7016537.png", // Ethereum
+        "https://cdn-icons-png.flaticon.com/512/2091/2091665.png", // Escudo/Segurança
+        "https://cdn-icons-png.flaticon.com/512/11129/11129528.png" // Card/Cartão
     ];
+
+    const nomes = ["Ricardo M.", "Ana Paula S.", "Marcos Oliveira", "Juliana F.", "Bruno Costa", "Carla Menezes", "Thiago Souza", "Felipe D.", "Patrícia G.", "Gabriel S.", "Luciana K."];
+    const acoes = ["acaba de comprar o combo total.", "solicitou o Cartão Aurum.", "entrou no Hub de Elite.", "garantiu 4 sessões de mentoria.", "liberou o acesso VIP agora."];
 
     function mostrarProvaSocial() {
         const proof = document.getElementById('notification-container');
@@ -1669,22 +1666,24 @@ body { padding-bottom: 80px !important; }
         const imgEl = proof ? proof.querySelector('.notif-img') : null;
 
         if (proof && nomeEl && acaoEl && imgEl) {
-            const sorteio = provasSociais[Math.floor(Math.random() * provasSociais.length)];
+            const nomeAleatorio = nomes[Math.floor(Math.random() * nomes.length)];
+            const acaoAleatoria = acoes[Math.floor(Math.random() * acoes.length)];
+            const iconeAleatorio = iconesAtivos[Math.floor(Math.random() * iconesAtivos.length)];
 
-            nomeEl.innerHTML = `<b>${sorteio.n}</b>`;
-            acaoEl.innerHTML = sorteio.a;
-            // O código abaixo troca a foto dinamicamente usando um ID único para cada pessoa
-            imgEl.src = `https://i.pravatar.cc/100?u=${sorteio.img}`; 
+            nomeEl.innerHTML = `<b>${nomeAleatorio}</b>`;
+            acaoEl.innerHTML = acaoAleatoria;
+            
+            // Troca o rosto pelo ícone de ativo/tecnologia
+            imgEl.src = iconeAleatorio;
+            imgEl.style.filter = "invert(1)"; // Deixa os ícones brancos/neon para combinar com o site
 
             proof.style.display = 'flex'; 
 
-            // FICA VISÍVEL POR 8 SEGUNDOS
             setTimeout(() => {
                 proof.style.display = 'none';
             }, 8000);
         }
     }
-
     // Inicia os processos de Preço
     carregarPrecos();
     setInterval(carregarPrecos, 60000);
