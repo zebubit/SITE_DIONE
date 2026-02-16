@@ -378,17 +378,50 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Não atrapalha os cliques */
-    z-index: 1; /* Fica atrás do conteúdo, mas acima do fundo */
+    pointer-events: none;
+    z-index: 1;
     background: radial-gradient(
         circle 250px at var(--x) var(--y), 
         rgba(245, 158, 11, 0.15), 
         transparent 80%
     );
 }
+
+/* NOVO: BARRA DE PREÇOS (TICKER) */
+#ticker-soberano {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    border-bottom: 1px solid #3b82f6;
+    z-index: 10000;
+    padding: 6px 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+#ticker-soberano span b {
+    color: #3b82f6;
+    margin-left: 4px;
+}
+
+/* Empurra o site para baixo para a barra não cobrir o topo */
+body { padding-top: 35px !important; }
+
 </style>
-    </style>
 <body class="bg-black">
+    <div id="ticker-soberano">
+        <span>BTC <b id="p-btc">...</b></span>
+        <span>ETH <b id="p-eth">...</b></span>
+        <span>SOL <b id="p-sol">...</b></span>
+    </div>
+
     <div id="spotlight"></div>
 
     <a href="https://api.whatsapp.com/send?phone=5534993421500&text=Olá%20Dione,%20gostaria%20de%20saber%20mais%20sobre%20a%20Soberania%20Digital!" 
@@ -1517,6 +1550,25 @@ html {
         spotlight.style.setProperty('--x', e.clientX + 'px');
         spotlight.style.setProperty('--y', e.clientY + 'px');
     });
+
+    // 13. LÓGICA DO TICKER DE PREÇOS LIVE
+    async function carregarPrecos() {
+        try {
+            const url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd';
+            const res = await fetch(url);
+            const dados = await res.json();
+            
+            document.getElementById('p-btc').innerHTML = `$${dados.bitcoin.usd.toLocaleString()}`;
+            document.getElementById('p-eth').innerHTML = `$${dados.ethereum.usd.toLocaleString()}`;
+            document.getElementById('p-sol').innerHTML = `$${dados.solana.usd.toLocaleString()}`;
+        } catch (erro) {
+            console.log("Erro ao atualizar preços");
+        }
+    }
+
+    // Inicia a busca e atualiza a cada 60 segundos
+    carregarPrecos();
+    setInterval(carregarPrecos, 60000);
 </script>
 </body>
 </html>
