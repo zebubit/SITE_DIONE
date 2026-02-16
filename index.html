@@ -1790,13 +1790,16 @@ body { padding-bottom: 80px !important; }
 
     document.addEventListener('mouseleave', (e) => {
         if (e.clientY < 0) {
-            const jaMostrou = localStorage.getItem('soberania_exit_v1');
-            if (!jaMostrou) {
+            // Mudamos para sessionStorage: mostra uma vez por sessão (visita)
+            const jaMostrouSessao = sessionStorage.getItem('soberania_exit_v2');
+            
+            if (!jaMostrouSessao) {
                 const modal = document.getElementById('exit-modal');
                 if (modal) {
                     modal.style.display = 'flex';
                     iniciarRelogioSoberano();
-                    localStorage.setItem('soberania_exit_v1', 'true');
+                    // Registra que já mostrou nesta visita específica
+                    sessionStorage.setItem('soberania_exit_v2', 'true');
                 }
             }
         }
