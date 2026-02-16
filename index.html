@@ -351,6 +351,25 @@ html {
     width: max-content;
     animation: scroll-logos 30s linear infinite;
 }
+
+        @keyframes neon-glow {
+        0%, 100% {
+            filter: grayscale(100%) opacity(30%);
+            transform: scale(1);
+        }
+        50% {
+            filter: grayscale(0%) opacity(100%) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+            transform: scale(1.05);
+        }
+    }
+
+    .atencao-global-animada {
+        animation: neon-glow 3s ease-in-out infinite;
+    }
+
+    .delay-master {
+        animation-delay: 1.5s;
+    }
 </style>
     </style>
 </head>
@@ -776,13 +795,21 @@ html {
                 <span>💳 Conhecer Cartões de Elite</span>
             </a>
 
-            <div class="flex items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" alt="Visa" class="h-6 md:h-8">
-                <div class="h-4 w-[1px] bg-white/20"></div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="h-8 md:h-10">
-                <div class="h-4 w-[1px] bg-white/20"></div>
-                <span class="text-white/50 text-[10px] uppercase tracking-widest font-bold">Aceitação Global</span>
-            </div>
+            <div class="flex items-center gap-6 mt-6">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" 
+         alt="Visa" 
+         class="h-6 md:h-8 atencao-global-animada">
+    
+    <div class="h-4 w-[1px] bg-white/20"></div>
+    
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" 
+         alt="Mastercard" 
+         class="h-8 md:h-10 atencao-global-animada delay-master">
+    
+    <div class="h-4 w-[1px] bg-white/20"></div>
+    
+    <span class="text-white/50 text-[10px] uppercase tracking-widest font-bold">Aceitação Global</span>
+</div>
 
         </div> 
     </div> 
