@@ -158,7 +158,7 @@
 /* CURSOR ANIMADO AURUM - INTEGRADO */
 #magic-cursor {
     position: fixed;
-    width: 12px;
+    width: 20px;
     height: 12px;
     background: #f59e0b;
     border-radius: 50%;
@@ -347,16 +347,28 @@ window.addEventListener('mousemove', e => {
     cursor.style.top = y + 'px';
 });
 
-// EFEITO DE EXPANSÃO NOS BOTÕES
-const interactiveElements = document.querySelectorAll('a, button, .card-premium');
+// EFEITO DE EXPANSÃO COM FRASES PERSONALIZADAS
+const interactiveElements = document.querySelectorAll('a, button, .card-premium, .whatsapp-float');
+
 interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursor.classList.add('active');
-        // Texto dinâmico para o Hub
-        if (el.classList.contains('whatsapp-float')) {
-            cursor.innerHTML = 'SUPORTE';
-        } else {
-            cursor.innerHTML = 'ACESSAR';
+        
+        // --- CONFIGURAÇÃO DE FRASES POR BOTÃO ---
+        const textoBotao = el.innerText.toLowerCase();
+        const linkBotao = el.href ? el.href.toLowerCase() : '';
+
+        if (linkBotao.includes('wa.me') || el.classList.contains('whatsapp-float')) {
+            cursor.innerHTML = 'SUPORTE VIP'; // No WhatsApp
+        } 
+        else if (textoBotao.includes('solicitar') || textoBotao.includes('acesso')) {
+            cursor.innerHTML = 'QUERO O MEU 💳'; // Nos botões de cartão
+        }
+        else if (textoBotao.includes('voltar') || linkBotao.includes('index')) {
+            cursor.innerHTML = 'RETORNAR'; // Se tiver botão de voltar
+        }
+        else {
+            cursor.innerHTML = 'EXPLORAR'; // Padrão para o resto
         }
     });
     
