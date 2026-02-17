@@ -33,7 +33,7 @@
             margin: 0;
         }
 
-        /* --- ADICIONE O SPOTLIGHT AQUI --- */
+        /* --- SPOTLIGHT --- */
         #spotlight {
             position: fixed;
             top: 0;
@@ -51,7 +51,7 @@
 
         .font-serif { font-family: 'Playfair Display', serif; }
 
-        /* CORREÇÃO TÉCNICA DO FUNDO: Otimizado para MacBook e Smartphones */
+        /* FUNDO OTIMIZADO */
         #video-background {
             position: fixed;
             top: 0;
@@ -65,18 +65,22 @@
             background-repeat: no-repeat;
         }
 
+        /* EFEITO GLASSMOPHISM PREMIUM & TILT */
         .glass { 
-            background: rgba(0, 0, 0, 0.4); 
+            background: rgba(0, 0, 0, 0.45); 
             backdrop-filter: blur(15px); 
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.6);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease-out;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
         }
 
-        .glass:hover {
-            transform: translateY(-5px);
-            border-color: rgba(245, 158, 11, 0.4);
+        .card-premium:hover {
+            border-color: rgba(245, 158, 11, 0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(245, 158, 11, 0.1);
         }
 
         .btn-gold { 
@@ -94,118 +98,110 @@
         input::placeholder { color: rgba(255,255,255,0.3); }
 
         /* BOTÃO WHATSAPP FLUTUANTE */
-.whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    /* Animação de pulso para chamar atenção */
-    animation: pulse-whatsapp 2s infinite;
-}
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
 
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 30px rgba(37, 211, 102, 0.8);
-    color: #fff;
-}
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(37, 211, 102, 0.8);
+            color: #fff;
+        }
 
-.whatsapp-notify {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    width: 22px;
-    height: 22px;
-    background-color: #ff0000;
-    color: white;
-    border-radius: 50%;
-    font-size: 12px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 10000;
-}
+        .whatsapp-notify {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 22px;
+            height: 22px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10000;
+        }
 
-.whatsapp-notify.show {
-    opacity: 1;
-    transform: scale(1);
-}
+        .whatsapp-notify.show {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-/* Efeito de pulso no botão */
-@keyframes pulse-whatsapp {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
+        @keyframes pulse-whatsapp {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
-/* CURSOR MOEDA BITCOIN - HUB ELITE */
-#magic-cursor {
-    position: fixed;
-    width: 45px; /* Tamanho ideal para ver o detalhe da moeda */
-    height: 45px;
-    background-image: url('cursor1.jpeg');
-    background-size: cover;
-    background-position: center;
-    border-radius: 50%;
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    pointer-events: none;
-    z-index: 100000;
-    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    font-size: 0;
-    font-weight: 900;
-    text-transform: uppercase;
-    white-space: nowrap;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-}
+        /* CURSOR MOEDA BITCOIN */
+        #magic-cursor {
+            position: fixed;
+            width: 45px; 
+            height: 45px;
+            background-image: url('cursor1.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            pointer-events: none;
+            z-index: 100000;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 0;
+            font-weight: 900;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
 
-#magic-cursor.active {
-    width: 130px; 
-    height: 130px;
-    /* Mantém a moeda no fundo em vez de "none" */
-    background-image: url('cursor1.jpeg');
-    background-size: cover;
-    background-position: center;
-    
-    /* Cria uma sobreposição escura para o texto não sumir no brilho da moeda */
-    background-blend-mode: multiply;
-    background-color: rgba(0, 0, 0, 0.45); 
-    
-    color: #f59e0b; /* Texto em Dourado Aurum para alto contraste */
-    font-size: 11px;
-    letter-spacing: 2px;
-    box-shadow: 0 0 50px rgba(245, 158, 11, 0.7);
-    border: 2px solid #f59e0b;
-}
+        #magic-cursor.active {
+            width: 130px; 
+            height: 130px;
+            background-image: url('cursor1.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            background-color: rgba(0, 0, 0, 0.45); 
+            color: #f59e0b; 
+            font-size: 11px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 50px rgba(245, 158, 11, 0.7);
+            border: 2px solid #f59e0b;
+        }
 
-/* Esconde o cursor padrão em telas grandes */
-@media (min-width: 1024px) {
-    body, a, button, #spotlight { cursor: none !important; }
-}
-
+        @media (min-width: 1024px) {
+            body, a, button, #spotlight, .card-premium { cursor: none !important; }
+        }
     </style>
 </head>
 <body class="min-h-screen py-8 px-4 flex flex-col items-center">
@@ -219,7 +215,7 @@
         <p class="text-amber-500 font-bold text-xs md:text-sm uppercase tracking-[0.6em] animate-pulse">Liberação de Acesso e Soberania</p>
     </div>
 
-    <div id="solicitacao-area" class="max-w-xl w-full glass p-8 md:p-12 rounded-[2.5rem] text-center border-amber-500/40 mb-16 shadow-[0_0_50px_rgba(245,158,11,0.2)]">
+    <div id="solicitacao-area" class="max-w-xl w-full glass card-premium p-8 md:p-12 rounded-[2.5rem] text-center border-amber-500/40 mb-16 shadow-[0_0_50px_rgba(245,158,11,0.2)]">
         <h3 class="text-white text-2xl font-bold mb-2">Desbloquear Cartões</h3>
         <p class="text-gray-400 text-[10px] mb-8 uppercase tracking-[0.3em] font-light italic">Escolha o cartão desejado para liberar o acesso</p>
         
@@ -242,7 +238,7 @@
 
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 w-full">
         
-        <div class="glass p-8 rounded-[3rem] border border-amber-500/30 flex flex-col items-center text-center relative hover:scale-[1.02] transition-all duration-500 bg-black/60">
+        <div class="glass card-premium p-8 rounded-[3rem] border border-amber-500/30 flex flex-col items-center text-center relative transition-all duration-500 bg-black/60">
             <div class="absolute top-6 right-6">
                 <span class="bg-amber-500/10 text-amber-500 text-[10px] font-black px-3 py-1 rounded-full uppercase border border-amber-500/20 tracking-tighter">Soberania Global</span>
             </div>
@@ -267,7 +263,7 @@
             </a>
         </div>
 
-        <div class="glass p-8 rounded-[3rem] border border-blue-500/30 flex flex-col items-center text-center relative hover:scale-[1.02] transition-all duration-500 bg-black/60">
+        <div class="glass card-premium p-8 rounded-[3rem] border border-blue-500/30 flex flex-col items-center text-center relative transition-all duration-500 bg-black/60">
             <div class="absolute top-6 right-6">
                 <span class="bg-blue-500/10 text-blue-400 text-[10px] font-black px-3 py-1 rounded-full uppercase border border-blue-500/20 tracking-tighter">DeFi Institutional</span>
             </div>
@@ -300,104 +296,101 @@
         </p>
     </div>
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbztx3iM1DTrSJjMvfeZywDnI2k64NRJx-FX1J9rvmCduLi8iDTCEB-0aCtlWogQH6z8bA/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbztx3iM1DTrSJjMvfeZywDnI2k64NRJx-FX1J9rvmCduLi8iDTCEB-0aCtlWogQH6z8bA/exec';
 
-        function enviarSolicitacaoHub() {
-            const nome = document.getElementById('lead-nome').value;
-            const email = document.getElementById('lead-email').value;
-            const whatsapp = document.getElementById('lead-whatsapp').value;
-            const produto = document.getElementById('lead-produto').value;
+    // 1. CAPTURA DE LEADS E REDIRECIONAMENTO
+    function enviarSolicitacaoHub() {
+        const nome = document.getElementById('lead-nome').value;
+        const email = document.getElementById('lead-email').value;
+        const whatsapp = document.getElementById('lead-whatsapp').value;
+        const produto = document.getElementById('lead-produto').value;
 
-            if(!nome || !email || !whatsapp) {
-                alert('Dione solicita: Preencha todos os campos para liberar seu acesso.');
-                return;
-            }
-
-            const params = new URLSearchParams();
-            params.append('nome', nome);
-            params.append('email', email);
-            params.append('whatsapp', whatsapp);
-            params.append('produto', produto);
-
-            fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: params })
-            .catch(err => console.log("Erro de rede"));
-
-            // LÓGICA DE REDIRECIONAMENTO INTELIGENTE
-            let linkFinal = "";
-            if (produto === "CARTÃO AURUM") {
-                linkFinal = "https://backoffice.aurum.foundation/u/U20120";
-            } else {
-                linkFinal = "https://www.ether.fi/refer/4065fdf5";
-            }
-
-            window.open(linkFinal, '_blank', 'noopener,noreferrer');
-
-            const btn = document.querySelector('button[onclick="enviarSolicitacaoHub()"]');
-            btn.innerHTML = "ACESSO LIBERADO!";
-            btn.style.background = "#059669"; 
+        if(!nome || !email || !whatsapp) {
+            alert('Dione solicita: Preencha todos os campos para liberar seu acesso.');
+            return;
         }
 
-        setTimeout(() => {
-    const notify = document.getElementById('notify-hub');
-    if (notify) {
-        notify.classList.add('show');
+        const params = new URLSearchParams();
+        params.append('nome', nome);
+        params.append('email', email);
+        params.append('whatsapp', whatsapp);
+        params.append('produto', produto);
+
+        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: params })
+        .catch(err => console.log("Erro de rede"));
+
+        let linkFinal = (produto === "CARTÃO AURUM") 
+            ? "https://backoffice.aurum.foundation/u/U20120" 
+            : "https://www.ether.fi/refer/4065fdf5";
+
+        window.open(linkFinal, '_blank', 'noopener,noreferrer');
+
+        const btn = document.querySelector('button[onclick="enviarSolicitacaoHub()"]');
+        btn.innerHTML = "ACESSO LIBERADO!";
+        btn.style.background = "#059669"; 
     }
-}, 5000);
 
-// INTELIGÊNCIA DO CURSOR + SPOTLIGHT
-const spotlight = document.getElementById('spotlight');
-const cursor = document.getElementById('magic-cursor');
+    // 2. NOTIFICAÇÃO WHATSAPP
+    setTimeout(() => {
+        const notify = document.getElementById('notify-hub');
+        if (notify) notify.classList.add('show');
+    }, 5000);
 
-window.addEventListener('mousemove', e => {
-    const x = e.clientX;
-    const y = e.clientY;
+    // 3. INTELIGÊNCIA UNIFICADA: MOUSE, CURSOR, SPOTLIGHT E TILT 3D
+    const spotlight = document.getElementById('spotlight');
+    const cursor = document.getElementById('magic-cursor');
+    const cards = document.querySelectorAll('.glass');
 
-    // Move a Lanterna (Spotlight)
-    spotlight.style.setProperty('--x', x + 'px');
-    spotlight.style.setProperty('--y', y + 'px');
+    window.addEventListener('mousemove', e => {
+        const x = e.clientX;
+        const y = e.clientY;
 
-    // Move o Cursor Aurum
-    cursor.style.left = x + 'px';
-    cursor.style.top = y + 'px';
-});
+        // Movimento Spotlight e Moeda Bitcoin
+        spotlight.style.setProperty('--x', x + 'px');
+        spotlight.style.setProperty('--y', y + 'px');
+        cursor.style.left = x + 'px';
+        cursor.style.top = y + 'px';
 
-// EFEITO DE EXPANSÃO COM FRASES PERSONALIZADAS
-const interactiveElements = document.querySelectorAll('a, button, .card-premium, .whatsapp-float');
+        // Lógica de Inclinação 3D nos Cards
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const rotateX = (centerY - y) / 15; 
+                const rotateY = (x - centerX) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            } else {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            }
+        });
+    });
 
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.classList.add('active');
+    // 4. FRASES DINÂMICAS NA MOEDA
+    const interactiveElements = document.querySelectorAll('a, button, .glass, .whatsapp-float');
+
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.classList.add('active');
+            const textoBotao = el.innerText ? el.innerText.toUpperCase() : '';
+
+            if (textoBotao.includes('AURUM')) cursor.innerHTML = 'ELITE BLACK'; 
+            else if (textoBotao.includes('ETHER.FI')) cursor.innerHTML = 'GOLD CASH ⚡';
+            else if (textoBotao.includes('DESBLOQUEAR')) cursor.innerHTML = 'LIBERAR 🔓';
+            else if (el.classList.contains('whatsapp-float')) cursor.innerHTML = 'CHAMAR';
+            else cursor.innerHTML = 'VER MAIS';
+        });
         
-        // Captura o texto de dentro do botão para decidir a frase
-        const textoBotao = el.innerText.toUpperCase();
-
-        if (textoBotao.includes('AURUM')) {
-            cursor.innerHTML = 'ELITE BLACK'; 
-        } 
-        else if (textoBotao.includes('ETHER.FI')) {
-            cursor.innerHTML = 'GOLD CASH ⚡';
-        }
-        else if (textoBotao.includes('DESBLOQUEAR')) {
-            cursor.innerHTML = 'LIBERAR 🔓';
-        }
-        else if (el.classList.contains('whatsapp-float')) {
-            cursor.innerHTML = 'CHAMAR';
-        }
-        else {
-            cursor.innerHTML = 'VER MAIS';
-        }
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active');
+            cursor.innerHTML = '';
+        });
     });
-    
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active');
-        cursor.innerHTML = '';
-    });
-});
 </script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <a href="https://wa.me/5534993421500?text=Olá+Dione,+estou+no+Hub+de+Cartões+e+tenho+uma+dúvida." 
-   class="whatsapp-float" target="_blank">
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer">
     <i class="fab fa-whatsapp"></i>
     <span class="whatsapp-notify" id="notify-hub">1</span>
 </a>
