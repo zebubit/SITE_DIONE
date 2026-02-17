@@ -183,13 +183,22 @@
 }
 
 #magic-cursor.active {
-    width: 120px;
-    height: 120px;
-    background-image: none; /* A moeda some para dar lugar ao texto do CTA */
-    background-color: rgba(245, 158, 11, 0.98); 
+    width: 130px; 
+    height: 130px;
+    /* Mantém a moeda no fundo em vez de "none" */
+    background-image: url('cursor1.jpeg');
+    background-size: cover;
+    background-position: center;
+    
+    /* Cria uma sobreposição escura para o texto não sumir no brilho da moeda */
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.45); 
+    
+    color: #f59e0b; /* Texto em Dourado Aurum para alto contraste */
     font-size: 11px;
-    letter-spacing: 1px;
-    box-shadow: 0 0 40px rgba(245, 158, 11, 0.6);
+    letter-spacing: 2px;
+    box-shadow: 0 0 50px rgba(245, 158, 11, 0.7);
+    border: 2px solid #f59e0b;
 }
 
 /* Esconde o cursor padrão em telas grandes */
