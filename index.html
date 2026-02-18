@@ -40,7 +40,6 @@
         background-color: #000; 
         color: #e5e5e5; 
         overflow-x: hidden;
-        /* Película fumê equilibrada para clareza e contraste dos logos */
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('SITE33.webp');
         background-attachment: fixed; 
         background-size: cover; 
@@ -80,47 +79,26 @@
     /* 3. CARDS E NAVEGAÇÃO */
     .comentario-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
     .comentario-card:hover { transform: translateY(-12px) scale(1.02); border-color: rgba(245, 158, 11, 0.6); box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.3); background: rgba(20, 20, 20, 0.9) !important; z-index: 50; }
-    
     .nav-glass { background: rgba(255, 255, 255, 0.02) !important; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
     .bg-card-premium { background: rgba(15, 15, 15, 0.8) !important; backdrop-filter: blur(10px); border: 1px solid rgba(245, 158, 11, 0.2); }
-
     .capa-container { width: 100%; max-width: 420px; height: 620px; perspective: 1000px; background: transparent; }
     .modal-bg { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); }
 
     /* 4. WHATSAPP E NOTIFICAÇÃO */
     .whatsapp-float {
-        position: fixed;
-        bottom: 50px !important;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background-color: #25d366;
-        color: #FFF;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 30px;
-        box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-        z-index: 10001;
-        transition: all 0.3s ease;
-        animation: pulse-whatsapp 2s infinite;
-        text-decoration: none;
+        position: fixed; bottom: 50px !important; right: 20px;
+        width: 60px; height: 60px; background-color: #25d366; color: #FFF;
+        border-radius: 50px; display: flex; align-items: center; justify-content: center;
+        font-size: 30px; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 10001;
+        transition: all 0.3s ease; animation: pulse-whatsapp 2s infinite; text-decoration: none;
     }
 
     .whatsapp-notify {
-        position: absolute;
-        top: -5px; right: -5px;
-        width: 22px; height: 22px;
-        background-color: #ff0000;
-        color: white;
-        border-radius: 50%;
-        font-size: 12px; font-weight: bold;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        opacity: 0; transform: scale(0);
-        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        z-index: 10002;
+        position: absolute; top: -5px; right: -5px; width: 22px; height: 22px;
+        background-color: #ff0000; color: white; border-radius: 50%;
+        font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); opacity: 0; transform: scale(0);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10002;
     }
     .whatsapp-notify.show { opacity: 1; transform: scale(1); }
 
@@ -130,12 +108,11 @@
         100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
     }
 
-    /* 5. BOTÕES PREMIUM */
+    /* 5. BOTÕES PREMIUM E TICKER */
     .btn-mentoria-viva {
         background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #b45309 100%) !important;
         color: #000 !important; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
-        transition: all 0.3s ease; animation: pulse-gold 2s infinite;
-        position: relative; overflow: hidden; display: inline-block;
+        transition: all 0.3s ease; animation: pulse-gold 2s infinite; position: relative; overflow: hidden; display: inline-block;
     }
     .btn-mentoria-viva::after {
         content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%;
@@ -149,10 +126,6 @@
     }
     @keyframes shine-effect { 0% { left: -60%; } 20% { left: 120%; } 100% { left: 120%; } }
 
-    Aqui está o bloco da Seção 6 atualizado. Nele, eu aumentei a notificação para o tamanho ideal (300px) e já incluí o efeito de movimento (Tilt 3D) para a sua revista não ficar mais estática.
-
-🛠️ Substitua a sua seleção por este bloco:
-CSS
     /* 6. TICKER, SPOTLIGHT E SOCIAL PROOF (AUDITADO E AMPLIADO) */
     #ticker-soberano { 
         position: fixed; bottom: 0; left: 0; width: 100%; 
@@ -161,19 +134,20 @@ CSS
         justify-content: space-evenly; align-items: center; backdrop-filter: blur(10px); 
     }
     
+    /* LIBERAÇÃO DAS MOEDAS */
+    .coin-box, .price-up, .price-down, .coin-name { display: flex !important; visibility: visible !important; opacity: 1 !important; }
+
     #spotlight { 
         position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
         pointer-events: none; z-index: 1; 
         background: radial-gradient(circle 250px at var(--x) var(--y), rgba(245, 158, 11, 0.15), transparent 80%); 
     }
 
-    /* NOTIFICAÇÃO COM TAMANHO IDEAL (300px) */
     #notification-container {
         position: fixed; bottom: 85px; left: 20px; z-index: 10002;
         background: rgba(10, 10, 10, 0.98); border: 1px solid #3b82f6; border-radius: 12px;
         padding: 12px 18px; display: none; align-items: center; gap: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 1); 
-        min-width: 300px; /* Aumentado para dar mais presença */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 1); min-width: 300px;
         animation: slideIn 0.6s ease-out;
     }
 
@@ -184,17 +158,8 @@ CSS
     @keyframes slideIn { from { transform: translateX(-120%); } to { transform: translateX(0); } }
 
     /* EFEITO DE MOVIMENTO NA REVISTA (TILT 3D) */
-    img[src*="Revista"] {
-        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        cursor: pointer;
-        will-change: transform;
-    }
-
-    img[src*="Revista"]:hover {
-        transform: perspective(1200px) rotateY(-15deg) rotateX(5deg) scale(1.05) !important;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.8) !important;
-        z-index: 50;
-    }
+    img[src*="Revista"] { transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important; cursor: pointer; will-change: transform; }
+    img[src*="Revista"]:hover { transform: perspective(1200px) rotateY(-15deg) rotateX(5deg) scale(1.05) !important; box-shadow: 0 30px 60px rgba(0,0,0,0.8) !important; z-index: 50; }
 
     /* 7. FAQ E CARROSSEL */
     .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1rem; overflow: hidden; margin-bottom: 10px; transition: all 0.3s ease; }
@@ -209,9 +174,7 @@ CSS
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* 8. ADAPTAÇÃO MOBILE */
-    @media (min-width: 1024px) {
-        body { background-size: 100vw; background-position: center -50px; }
-    }
+    @media (min-width: 1024px) { body { background-size: 100vw; background-position: center -50px; } }
     @media (max-width: 1024px) {
         #spotlight { display: none !important; }
         .whatsapp-float { bottom: 70px !important; }
@@ -220,31 +183,12 @@ CSS
 
     /* 9. MODAL DE SAÍDA - SISTEMA INTELIGENTE */
     #exit-modal {
-        display: none; /* Começa escondido para não poluir sua foto */
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        justify-content: center;
-        align-items: center;
-        z-index: 30000;
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        justify-content: center; align-items: center; z-index: 30000;
     }
-
-    /* Esta classe será ativada pelo JavaScript ao tentar sair */
-    #exit-modal.active {
-        display: flex !important;
-    }
-
-    #exit-card {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(0, 0, 0, 1));
-        border: 2px solid rgba(59, 130, 246, 0.4);
-        padding: 40px;
-        border-radius: 24px;
-        text-align: center;
-        max-width: 450px;
-        box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
-    }
+    #exit-modal.active { display: flex !important; }
+    #exit-card { background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(0, 0, 0, 1)); border: 2px solid rgba(59, 130, 246, 0.4); padding: 40px; border-radius: 24px; text-align: center; max-width: 450px; box-shadow: 0 0 50px rgba(59, 130, 246, 0.3); }
 </style>
 <body class="bg-black">
 
