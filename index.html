@@ -1776,11 +1776,34 @@ body { padding-bottom: 100px !important; }
         }, 600);
     }
 
+    // --- LÓGICA DE ATIVAÇÃO DO BANNER GERAL LGPD (INSERIDO AQUI) ---
+    function aceitarLGPD() {
+        localStorage.setItem('lgpd_aceito', 'true');
+        const banner = document.getElementById('lgpd-banner');
+        if (banner) {
+            banner.style.setProperty('display', 'none', 'important');
+        }
+    }
+
+    function verificarLGPD() {
+        const jaAceitou = localStorage.getItem('lgpd_aceito');
+        const banner = document.getElementById('lgpd-banner');
+        if (banner && jaAceitou !== 'true') {
+            banner.style.setProperty('display', 'block', 'important');
+            console.log("Banner LGPD ativado com sucesso.");
+        }
+    }
+
+    // Executa a verificação imediatamente ao ler o script
+    verificarLGPD();
+
     // 12. LÓGICA DO SPOTLIGHT (LUZ QUE SEGUE O MOUSE)
     const spotlight = document.getElementById('spotlight');
     window.addEventListener('mousemove', e => {
-        spotlight.style.setProperty('--x', e.clientX + 'px');
-        spotlight.style.setProperty('--y', e.clientY + 'px');
+        if (spotlight) {
+            spotlight.style.setProperty('--x', e.clientX + 'px');
+            spotlight.style.setProperty('--y', e.clientY + 'px');
+        }
     });
 
     // 13. LÓGICA DO TICKER DE PREÇOS LIVE (PREMIUM - 5 MOEDAS + CORES)
