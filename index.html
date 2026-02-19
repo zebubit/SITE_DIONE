@@ -571,28 +571,33 @@ img[src="Revista.jpeg"] {
 }
 
 /* Ajuste no fundo do site para não esconder conteúdo atrás da barra */
-body { padding-bottom: 80px !important; }
+body { padding-bottom: 100px !important; }
 
-        /* AJUSTE DO CARTÃO (PARA NÃO FICAR GIGANTE E TER EFEITO 3D) */
+/* AJUSTE DO CARTÃO (TAMANHO PREMIUM E EFEITO 3D) */
 .capa-container {
     width: 100%;
-    max-width: 400px; /* Isso impede o cartão de crescer demais e ocupar a tela toda */
-    margin: 0 auto;   /* Centraliza o cartão no meio da seção */
-    perspective: 1000px; /* Prepara o cartão para o efeito de inclinação 3D */
+    max-width: 350px; /* Trava o tamanho para não estourar na tela */
+    margin: 0 auto;   /* Centraliza perfeitamente */
+    perspective: 1200px; /* Profundidade do efeito 3D */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .capa-container img {
     width: 100%;
     height: auto;
-    border-radius: 20px;
-    /* Sombra pesada para o cartão "flutuar" sobre a foto de fundo */
-    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.7));
-    transition: all 0.6s ease;
+    border-radius: 15px;
+    /* Sombra projetada para destacar da foto de fundo SITE33.webp */
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    display: block !important; /* Força a exibição da imagem */
 }
 
-/* Quando você passa o mouse, o cartão inclina */
+/* Efeito de inclinação ao passar o mouse */
 .capa-container:hover img {
-    transform: rotateY(-15deg) rotateX(5deg) scale(1.02);
+    transform: rotateY(-18deg) rotateX(6deg) scale(1.05);
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9)) brightness(1.1);
 }
 
 </style>
@@ -1030,49 +1035,45 @@ body { padding-bottom: 80px !important; }
 
 <section class="py-20 relative z-20">
     <div class="max-w-7xl mx-auto px-4 md:px-6">
-        <div class="p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] border border-amber-500/20 flex flex-col items-center text-center relative overflow-hidden" 
+        <div class="p-8 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-amber-500/20 flex flex-col items-center text-center relative overflow-hidden" 
              style="background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
             
             <span class="text-amber-500 font-black text-[10px] md:text-[12px] uppercase tracking-[0.5em] mb-6">Off-Ramp & DeFi Ecosystem</span>
             
-            <div class="capa-container mx-auto mb-10">
-                <img src="https://www.cryptovantage.com/app/uploads/2020/09/generic-crypto-card.png" 
-                     alt="Cartão Elite Soberano" 
-                     class="w-full h-auto object-contain"
-                     style="display: block !important;">
+            <div class="capa-container mb-8">
+                <img src="https://www.pngall.com/wp-content/uploads/5/Credit-Card-PNG-File.png" 
+                     alt="Cartão Elite" 
+                     class="w-full max-w-[350px] mx-auto h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             </div>
 
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-white text-4xl md:text-6xl font-serif italic mb-8 leading-tight drop-shadow-lg">
+                <h2 class="text-white text-4xl md:text-6xl font-serif italic mb-6 leading-tight">
                     Cartões de Elite: <br>
                     <span class="text-amber-500">O poder da escolha</span> em suas mãos.
                 </h2>
-                <p class="text-gray-200 font-light leading-relaxed text-base md:text-lg mb-10">
-                    Complemente sua estratégia Web3 com ferramentas de elite. Seja através da <strong>soberania absoluta do Cartão Aurum</strong> ou da <strong>eficiência DeFi do Ether.fi</strong>. Transforme ganhos em poder de compra global com curadoria estratégica.
+                <p class="text-gray-200 font-light leading-relaxed text-base md:text-lg mb-8">
+                    Complemente sua estratégia Web3 com ferramentas de elite. Seja através da soberania absoluta do Cartão Aurum ou da eficiência DeFi do Ether.fi.
                 </p>
             </div>
 
             <a href="cartao_aurum.html" 
-               class="bg-white text-black hover:bg-amber-500 hover:text-white font-black py-5 px-12 rounded-2xl uppercase tracking-[0.2em] transition-all transform hover:scale-105 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center gap-3 no-underline mb-12">
-                <span>💳 Conhecer Cartões de Elite</span>
+               class="bg-white text-black hover:bg-amber-500 hover:text-white font-black py-4 px-10 rounded-2xl uppercase tracking-[0.2em] transition-all transform hover:scale-105 mb-10 no-underline">
+                <span>💳 CONHECER CARTÕES DE ELITE</span>
             </a>
 
-            <div class="flex items-center gap-6 mt-6">
+            <div class="flex items-center gap-6">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Visa_2021.svg" 
-                     alt="Visa" 
-                     class="h-6 md:h-8 atencao-global-animada">
+                     alt="Visa" class="h-5 md:h-6 atencao-global-animada">
                 
                 <div class="h-4 w-[1px] bg-white/20"></div>
                 
                 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" 
-                     alt="Mastercard" 
-                     class="h-8 md:h-10 atencao-global-animada delay-master">
+                     alt="Mastercard" class="h-8 md:h-9 atencao-global-animada delay-master">
                 
                 <div class="h-4 w-[1px] bg-white/20"></div>
                 
                 <span class="text-white/50 text-[10px] uppercase tracking-widest font-bold">Aceitação Global</span>
             </div>
-
         </div> 
     </div> 
 </section>
