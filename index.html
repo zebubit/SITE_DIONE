@@ -32,54 +32,539 @@
     <script src="https://cdn.tailwindcss.com"></script> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
-    /* 1. RESET E FUNDO */
-    html { scroll-behavior: smooth; }
-    body { 
-        font-family: 'Montserrat', sans-serif; background-color: #000; color: #e5e5e5; overflow-x: hidden;
-        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('SITE33.webp');
-        background-attachment: fixed; background-size: cover; background-position: center top; padding-bottom: 80px !important; 
+/* NOTIFICAÇÃO DO WHATSAPP */
+.whatsapp-notify {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 22px;
+    height: 22px;
+    background-color: #ff0000;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    opacity: 0; 
+    transform: scale(0);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* FALTOU ESSA PARTE AQUI NO SEU PARA O STYLE FICAR OK: */
+.whatsapp-notify.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 1. ROLAGEM SUAVE */
+html {
+    scroll-behavior: smooth;
+}
+    /* 1. ROLAGEM SUAVE E EFEITO DOS COMENTÁRIOS NO TOPO */
+    html {
+        scroll-behavior: smooth;
     }
 
-    /* 2. BOTAO ZAP (RESTAURADO) */
-    .whatsapp-float {
-        position: fixed; bottom: 20px !important; right: 20px;
-        width: 60px; height: 60px; background-color: #25d366; color: #FFF;
-        border-radius: 50px; display: flex; align-items: center; justify-content: center;
-        font-size: 30px; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 9999;
+    .comentario-card {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
     }
 
-    /* 3. EBOOKS E CAPAS (TAMANHO CONTROLADO) */
-    .capa-container { width: 100%; max-width: 320px; margin: 0 auto; perspective: 1000px; }
-    img[src*="Revista"], .ebook-img { 
-        max-width: 100%; height: auto; transition: 0.5s; cursor: pointer; 
+    .comentario-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        border-color: rgba(245, 158, 11, 0.6);
+        box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.3);
+        background: rgba(20, 20, 20, 0.9) !important;
+        z-index: 50;
     }
-    img[src*="Revista"]:hover { transform: perspective(1000px) rotateY(-15deg) scale(1.02); }
 
-    /* 4. BOTÃO MENTORIA (O "TOP" DE VOLTA) */
-    .btn-mentoria-viva {
-        background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #b45309 100%) !important;
-        color: #000 !important; font-weight: 900; padding: 15px 30px; border-radius: 8px;
-        text-transform: uppercase; letter-spacing: 2px; display: inline-block;
-        animation: pulse-gold 2s infinite; border: none !important;
+   /* 2. BODY EQUILIBRADO */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #000; 
+            color: #e5e5e5; 
+            overflow-x: hidden;
+            
+            background-image: url('SITE33.webp'); 
+            background-attachment: scroll; 
+            
+            /* Ajuste para não ficar 'gigante' */
+            background-size: contain; 
+            background-position: center top; 
+            background-repeat: repeat-y; /* Repete para baixo se o site for longo */
+        }
+
+        /* Ajuste para Desktop (MacBook) */
+        @media (min-width: 1024px) {
+            body {
+                background-size: 100vw;
+                background-attachment: fixed;
+                background-position: center -50px;
+                background-repeat: no-repeat;
+            }
+        }
+
+        /* REFINAMENTO DO TOPO VIDRO */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.02) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .bg-card-premium { 
+            background: rgba(15, 15, 15, 0.8) !important; 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 158, 11, 0.2); 
+        }
+
+        .capa-container { 
+            width: 100%; 
+            max-width: 420px; 
+            height: 620px; 
+            min-height: 620px; 
+            background: transparent; 
+            perspective: 1000px; 
+        }
+
+        .modal-bg { 
+            background: rgba(0, 0, 0, 0.95); 
+            backdrop-filter: blur(10px); 
+        }
+
+        /* ANIMAÇÃO DO CARROSSEL DE CRIPTOS */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 20px 0;
+            margin: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        /* BRILHO NA BARRA E CLIQUE */
+        .ticker-container:hover {
+            background: rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: fit-content;
+            animation: scroll 45s linear infinite;
+            /* ALTA PERFORMANCE: Força o uso da GPU (placa de vídeo) do MacBook e Smartphone */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* EFEITO NEON NOS LOGOS (BRILHO) */
+        .ticker-track img {
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+            transition: all 0.3s ease;
+            /* Melhora a renderização no mobile */
+            pointer-events: auto;
+        }
+
+        /* BRILHO AO PASSAR O MOUSE NA MOEDA */
+        .ticker-track img:hover {
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+            transform: scale(1.2);
+            z-index: 50;
+        }
+
+/* --- VIDA AO BOTÃO DA MENTORIA (ESTILO PREMIUM SOBERANO) --- */
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        @keyframes shine-effect {
+            0% { left: -60%; }
+            20% { left: 120%; }
+            100% { left: 120%; }
+        }
+
+        .btn-mentoria-viva {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #b45309 100%) !important;
+            color: #000 !important;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            animation: pulse-gold 2s infinite;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-mentoria-viva::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(30deg);
+            animation: shine-effect 3s infinite;
+        }
+
+        .btn-mentoria-viva:hover {
+            transform: scale(1.05) translateY(-2px);
+            filter: brightness(1.2);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.5);
+        }
+
+        /* --- AJUSTE DA NOTIFICAÇÃO DO WHATSAPP --- */
+        .whatsapp-notify {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 22px;
+            height: 22px;
+            background-color: #ff0000;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            opacity: 0; 
+            transform: scale(0);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10000;
+        }
+
+        .whatsapp-notify.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* BOTÃO WHATSAPP NEON FLUTUANTE */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float {
+    position: fixed;
+    bottom: 50px !important; /* Subimos o botão para ficar acima da barra */
+    right: 20px;
+    z-index: 10001;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* ESTILO DO FAQ */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            color: white;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-answer p {
+            padding: 1.5rem;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            color: #f59e0b;
+        }
+
+        @keyframes scroll-logos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-scroll-logos {
+    display: flex;
+    width: max-content;
+    animation: scroll-logos 30s linear infinite;
+}
+
+        @keyframes neon-glow {
+        0%, 100% {
+            filter: grayscale(100%) opacity(30%);
+            transform: scale(1);
+        }
+        50% {
+            filter: grayscale(0%) opacity(100%) drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+            transform: scale(1.05);
+        }
     }
-    @keyframes pulse-gold { 0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); } 50% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); } }
 
-    /* 5. TICKER (PREÇOS ESPALHADOS E COLORIDOS) */
-    #ticker-soberano { 
-        position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); 
-        border-top: 1px solid rgba(59, 130, 246, 0.5); z-index: 10000; padding: 12px 0; 
+    .atencao-global-animada {
+        animation: neon-glow 3s ease-in-out infinite;
     }
-    .ticker-track { display: flex; width: fit-content; animation: scroll 45s linear infinite; gap: 40px; }
-    .coin-box { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-    .price-up { color: #22c55e !important; font-weight: bold; }
-    .price-down { color: #ef4444 !important; font-weight: bold; }
-    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* 6. MODAL DE SAÍDA E LOGOS */
-    #exit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100000; justify-content: center; align-items: center; backdrop-filter: blur(10px); }
-    #exit-modal.active { display: flex !important; }
-    .logo-footer { max-height: 25px; filter: brightness(1.2); animation: pulse-logo 2s infinite; }
-    @keyframes pulse-logo { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    .delay-master {
+        animation-delay: 1.5s;
+    }
+
+        /* EFEITO SPOTLIGHT DE ELITE */
+#spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(
+        circle 250px at var(--x) var(--y), 
+        rgba(245, 158, 11, 0.15), 
+        transparent 80%
+    );
+}
+
+/* NOVO: BARRA DE PREÇOS (TICKER PREMIUM NO RODAPÉ) */
+#ticker-soberano {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid rgba(59, 130, 246, 0.5);
+    z-index: 10000;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+.coin-box { 
+    display: flex; 
+    align-items: center; 
+    gap: 5px; 
+    transition: transform 0.3s ease;
+}
+
+.coin-box:hover {
+    transform: translateY(-3px); /* Efeito de flutuar ao passar o mouse */
+}
+
+.coin-name { 
+    color: #94a3b8; 
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.price-up { 
+    color: #22c55e; 
+    font-family: 'Courier New', monospace; 
+    font-size: 12px; 
+}
+
+.price-down { 
+    color: #ef4444; 
+    font-family: 'Courier New', monospace; 
+    font-size: 12px; 
+}
+
+/* NOTIFICAÇÃO DE VENDA (SOCIAL PROOF) - VERSÃO PREMIUM MAIOR */
+#notification-container {
+    position: fixed;
+    bottom: 90px; /* Acima da barra de preços */
+    left: 20px;
+    z-index: 10002;
+    background: rgba(15, 15, 15, 0.98);
+    border: 1px solid #3b82f6;
+    border-radius: 12px;
+    padding: 15px 20px;
+    display: none; /* Ativado via Script */
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    min-width: 300px;
+    animation: slideIn 0.6s ease-out;
+}
+
+.notif-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #3b82f6;
+}
+
+.notif-text { 
+    font-size: 13px; 
+    color: #fff; 
+    line-height: 1.4;
+    font-family: sans-serif;
+}
+
+.notif-text b { 
+    color: #3b82f6; 
+    font-size: 15px; 
+    display: block; 
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-120%); }
+    to { transform: translateX(0); }
+}
+
+/* MODAL DE SAÍDA PREMIUM COM CRONÔMETRO */
+#exit-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(10px);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 30000;
+}
+
+#exit-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(0, 0, 0, 1));
+    border: 2px solid rgba(59, 130, 246, 0.4);
+    padding: 40px;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 450px;
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.3);
+    animation: modalFadeIn 0.4s ease-out;
+}
+
+#countdown-timer {
+    font-size: 52px;
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-weight: 900;
+    margin: 20px 0;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+}
+
+.btn-resgate {
+    background: #3b82f6;
+    color: #fff !important;
+    padding: 16px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-resgate:hover {
+    transform: scale(1.05);
+    background: #2563eb;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* CARD DA REVISTA PREMIUM - AJUSTE HISTÓRICO 2017 */
+.perspective-1200 { perspective: 1200px; }
+
+.group:hover img[src="Revista.jpeg"] {
+    transform: rotateY(0deg) rotateX(0deg) scale(1.05) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8) !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+img[src="Revista.jpeg"] {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    backface-visibility: hidden;
+}
+
+.btn-ler-agora {
+    background: #f59e0b;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+}
+
+/* Ajuste no fundo do site para não esconder conteúdo atrás da barra */
+body { padding-bottom: 80px !important; }
+
 </style>
 <body class="bg-black">
 
