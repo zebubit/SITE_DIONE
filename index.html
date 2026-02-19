@@ -32,163 +32,63 @@
     <script src="https://cdn.tailwindcss.com"></script> 
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
-    /* 1. ESTRUTURA E ROLAGEM */
+    /* 1. ESTRUTURA E FUNDO */
     html { scroll-behavior: smooth; }
-    
     body { 
-        font-family: 'Montserrat', sans-serif; 
-        background-color: #000; 
-        color: #e5e5e5; 
-        overflow-x: hidden;
+        font-family: 'Montserrat', sans-serif; background-color: #000; color: #e5e5e5; overflow-x: hidden;
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('SITE33.webp');
-        background-attachment: fixed; 
-        background-size: cover; 
-        background-position: center top; 
-        background-repeat: no-repeat;
-        padding-bottom: 80px !important; 
+        background-attachment: fixed; background-size: cover; background-position: center top; padding-bottom: 80px !important; 
     }
 
-    /* 2. LOGOS VIVOS (VISA/MASTER) COM PULSAÇÃO */
+    /* 2. LOGOS VIVOS (VISA/MASTER) */
     .logo-footer {
         filter: drop-shadow(0px 0px 8px rgba(0,0,0,1)) brightness(1.2) contrast(1.1) !important;
-        opacity: 1 !important;
-        max-height: 28px;
-        width: auto;
-        transition: all 0.3s ease;
+        opacity: 1 !important; max-height: 28px; width: auto;
         animation: pulse-logos-vivos 2s infinite ease-in-out;
-        z-index: 10;
-        position: relative;
+        z-index: 10; position: relative;
     }
+    @keyframes pulse-logos-vivos { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 
-    @keyframes pulse-logos-vivos {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.08); }
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 50px;
-        backdrop-filter: blur(5px);
-    }
+    .logo-container { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 15px; background: rgba(0, 0, 0, 0.2); border-radius: 50px; backdrop-filter: blur(5px); }
 
     /* 3. CARDS E NAVEGAÇÃO */
     .comentario-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
     .comentario-card:hover { transform: translateY(-12px) scale(1.02); border-color: rgba(245, 158, 11, 0.6); box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.3); background: rgba(20, 20, 20, 0.9) !important; z-index: 50; }
-    .nav-glass { background: rgba(255, 255, 255, 0.02) !important; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .nav-glass { background: rgba(255, 255, 255, 0.02) !important; backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
     .bg-card-premium { background: rgba(15, 15, 15, 0.8) !important; backdrop-filter: blur(10px); border: 1px solid rgba(245, 158, 11, 0.2); }
-    .capa-container { width: 100%; max-width: 420px; height: 620px; perspective: 1000px; background: transparent; }
-    .modal-bg { background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); }
 
     /* 4. WHATSAPP E NOTIFICAÇÃO */
-    .whatsapp-float {
-        position: fixed; bottom: 50px !important; right: 20px;
-        width: 60px; height: 60px; background-color: #25d366; color: #FFF;
-        border-radius: 50px; display: flex; align-items: center; justify-content: center;
-        font-size: 30px; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 10001;
-        transition: all 0.3s ease; animation: pulse-whatsapp 2s infinite; text-decoration: none;
-    }
+    .whatsapp-float { position: fixed; bottom: 50px !important; right: 20px; width: 60px; height: 60px; background-color: #25d366; color: #FFF; border-radius: 50px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 0 20px rgba(37, 211, 102, 0.4); z-index: 10001; animation: pulse-whatsapp 2s infinite; }
+    @keyframes pulse-whatsapp { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
-    .whatsapp-notify {
-        position: absolute; top: -5px; right: -5px; width: 22px; height: 22px;
-        background-color: #ff0000; color: white; border-radius: 50%;
-        font-size: 12px; font-weight: bold; display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); opacity: 0; transform: scale(0);
-        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10002;
-    }
-    .whatsapp-notify.show { opacity: 1; transform: scale(1); }
-
-    @keyframes pulse-whatsapp {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-        70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
-
-    /* 5. BOTÕES PREMIUM E TICKER */
-    .btn-mentoria-viva {
-        background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #b45309 100%) !important;
-        color: #000 !important; font-weight: 900; text-transform: uppercase; letter-spacing: 2px;
-        transition: all 0.3s ease; animation: pulse-gold 2s infinite; position: relative; overflow: hidden; display: inline-block;
-    }
-    .btn-mentoria-viva::after {
-        content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%;
-        background: rgba(255, 255, 255, 0.4); transform: rotate(30deg); animation: shine-effect 3s infinite;
-    }
-
-    @keyframes pulse-gold {
-        0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-        70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-    }
-    @keyframes shine-effect { 0% { left: -60%; } 20% { left: 120%; } 100% { left: 120%; } }
-
-    /* 6. TICKER, SPOTLIGHT E SOCIAL PROOF (AUDITADO E AMPLIADO) */
-    #ticker-soberano { 
-        position: fixed; bottom: 0; left: 0; width: 100%; 
-        background: rgba(0, 0, 0, 0.95); border-top: 1px solid rgba(59, 130, 246, 0.5); 
-        z-index: 10000; padding: 8px 0; display: flex; 
-        justify-content: space-evenly; align-items: center; backdrop-filter: blur(10px); 
-    }
+    /* 5. TICKER E MOEDAS (FORÇANDO CORES E IMAGENS) */
+    #ticker-soberano { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); border-top: 1px solid rgba(59, 130, 246, 0.5); z-index: 10000; padding: 10px 0; display: flex !important; }
     
-    /* LIBERAÇÃO DAS MOEDAS */
-    .coin-box, .price-up, .price-down, .coin-name { display: flex !important; visibility: visible !important; opacity: 1 !important; }
+    /* Vida nas Moedas - Verde e Vermelho Fortes */
+    .price-up { color: #22c55e !important; font-weight: bold !important; display: inline-block !important; }
+    .price-down { color: #ef4444 !important; font-weight: bold !important; display: inline-block !important; }
+    .coin-box { display: flex !important; align-items: center !important; visibility: visible !important; opacity: 1 !important; }
+    .ticker-track img { width: 22px !important; height: 22px !important; display: block !important; object-fit: contain; }
 
-    #spotlight { 
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-        pointer-events: none; z-index: 1; 
-        background: radial-gradient(circle 250px at var(--x) var(--y), rgba(245, 158, 11, 0.15), transparent 80%); 
-    }
-
-    #notification-container {
-        position: fixed; bottom: 85px; left: 20px; z-index: 10002;
-        background: rgba(10, 10, 10, 0.98); border: 1px solid #3b82f6; border-radius: 12px;
-        padding: 12px 18px; display: none; align-items: center; gap: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 1); min-width: 300px;
-        animation: slideIn 0.6s ease-out;
-    }
-
+    /* 6. NOTIFICAÇÃO E REVISTA */
+    #notification-container { position: fixed; bottom: 85px; left: 20px; z-index: 10002; background: rgba(10, 10, 10, 0.98); border: 1px solid #3b82f6; border-radius: 12px; padding: 12px 18px; min-width: 300px; display: none; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,1); animation: slideIn 0.6s ease-out; }
     .notif-img { width: 45px !important; height: 45px !important; border-radius: 50%; border: 1px solid #3b82f6; }
-    .notif-text { font-size: 13px !important; color: #fff; line-height: 1.4; font-family: sans-serif; }
-    .notif-text b { color: #3b82f6; font-size: 15px !important; display: block; margin-bottom: 2px; }
+    
+    img[src*="Revista"] { transition: all 0.6s ease !important; cursor: pointer; will-change: transform; }
+    img[src*="Revista"]:hover { transform: perspective(1200px) rotateY(-15deg) rotateX(5deg) scale(1.05) !important; z-index: 50; filter: brightness(1.1); }
 
-    @keyframes slideIn { from { transform: translateX(-120%); } to { transform: translateX(0); } }
-
-    /* EFEITO DE MOVIMENTO NA REVISTA (TILT 3D) */
-    img[src*="Revista"] { transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important; cursor: pointer; will-change: transform; }
-    img[src*="Revista"]:hover { transform: perspective(1200px) rotateY(-15deg) rotateX(5deg) scale(1.05) !important; box-shadow: 0 30px 60px rgba(0,0,0,0.8) !important; z-index: 50; }
-
-    /* 7. FAQ E CARROSSEL */
-    .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1rem; overflow: hidden; margin-bottom: 10px; transition: all 0.3s ease; }
-    .faq-item:hover { border-color: rgba(245, 158, 11, 0.3); background: rgba(255, 255, 255, 0.05); }
-    .faq-question { width: 100%; padding: 1.5rem; display: flex; justify-content: space-between; cursor: pointer; color: white; font-weight: 600; background: none; border: none; align-items: center; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: all 0.3s ease-out; background: rgba(0, 0, 0, 0.2); }
-    .faq-item.active .faq-answer { max-height: 500px; }
-    .faq-icon { transition: transform 0.3s ease; color: #f59e0b; }
-    .faq-item.active .faq-icon { transform: rotate(180deg); }
-
-    .ticker-track { display: flex; width: fit-content; animation: scroll 45s linear infinite; will-change: transform; }
-    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* 7. MODAL DE SAÍDA (O GATILHO) */
+    #exit-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); justify-content: center; align-items: center; z-index: 99999; }
+    #exit-modal.active { display: flex !important; }
 
     /* 8. ADAPTAÇÃO MOBILE */
-    @media (min-width: 1024px) { body { background-size: 100vw; background-position: center -50px; } }
     @media (max-width: 1024px) {
-        #spotlight { display: none !important; }
         .whatsapp-float { bottom: 70px !important; }
         #notification-container { bottom: 80px; left: 10px; min-width: 280px; }
     }
-
-    /* 9. MODAL DE SAÍDA - SISTEMA INTELIGENTE */
-    #exit-modal {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        justify-content: center; align-items: center; z-index: 30000;
-    }
-    #exit-modal.active { display: flex !important; }
-    #exit-card { background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(0, 0, 0, 1)); border: 2px solid rgba(59, 130, 246, 0.4); padding: 40px; border-radius: 24px; text-align: center; max-width: 450px; box-shadow: 0 0 50px rgba(59, 130, 246, 0.3); }
+    
+    .ticker-track { display: flex; width: fit-content; animation: scroll 45s linear infinite; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 </style>
 <body class="bg-black">
 
