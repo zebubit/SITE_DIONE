@@ -1813,6 +1813,8 @@ body { padding-bottom: 100px !important; }
             const res = await fetch(url);
             const d = await res.json();
             
+            if (!d) return;
+
             const moedas = [
                 { id: 'btc', data: d.bitcoin },
                 { id: 'eth', data: d.ethereum },
