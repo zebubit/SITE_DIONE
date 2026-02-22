@@ -9,16 +9,24 @@
       gtag('config', 'G-CR8X94R6J6');
     </script>
 
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.tailwindcss.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+                   font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+                   img-src 'self' https: data:;
+                   connect-src 'self' https://api.coingecko.com https://script.google.com https://www.google-analytics.com;">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartão Aurum Visa | Soberania Financeira</title>
 
     <meta property="og:title" content="Cartão Aurum Visa | Dione Folador">
     <meta property="og:description" content="O fim do rastro financeiro. Adquira seu cartão sem KYC e sem CPF.">
-    <meta property="og:image" content="https://dionefolador.com/site33.webp">
+    <meta property="og:image" content="https://dionefolador.com/SITE33.webp">
     
-    <link rel="icon" type="image/png" href="SITE1.webp">
-    <link rel="apple-touch-icon" href="SITE1.webp">
+    <link rel="icon" type="image/webp" href="SITE33.webp">
+    <link rel="apple-touch-icon" href="SITE33.webp">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -162,7 +170,7 @@
             position: fixed;
             width: 45px; 
             height: 45px;
-            background-image: url('cursor1.jpeg');
+            background-image: url('cursor1.webp');
             background-size: cover;
             background-position: center;
             border-radius: 50%;
@@ -187,7 +195,7 @@
         #magic-cursor.active {
             width: 130px; 
             height: 130px;
-            background-image: url('cursor1.jpeg');
+            background-image: url('cursor1.webp');
             background-size: cover;
             background-position: center;
             background-blend-mode: multiply;
@@ -314,38 +322,52 @@
     <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbztx3iM1DTrSJjMvfeZywDnI2k64NRJx-FX1J9rvmCduLi8iDTCEB-0aCtlWogQH6z8bA/exec';
 
-    // 1. CAPTURA DE LEADS E REDIRECIONAMENTO
+    // 1. CAPTURA DE LEADS E REDIRECIONAMENTO COM RASTREIO SOBERANO
     function enviarSolicitacaoHub() {
-        const nome = document.getElementById('lead-nome').value;
-        const email = document.getElementById('lead-email').value;
-        const whatsapp = document.getElementById('lead-whatsapp').value;
+        const nome = document.getElementById('lead-nome').value.trim();
+        const email = document.getElementById('lead-email').value.trim();
+        const whatsapp = document.getElementById('lead-whatsapp').value.trim();
         const produto = document.getElementById('lead-produto').value;
 
+        // Validação de segurança solicitada por Dione
         if(!nome || !email || !whatsapp) {
-            alert('Dione solicita: Preencha todos os campos para liberar seu acesso.');
+            alert('Dione solicita: Por favor, preencha todos os campos para liberar seu acesso VIP.');
             return;
+        }
+
+        // --- RASTREIO GOOGLE ANALYTICS (GTAG) ---
+        if (typeof gtag === 'function') {
+            gtag('event', 'click_cartao', {
+                'event_category': 'Conversão',
+                'event_label': produto
+            });
         }
 
         const params = new URLSearchParams();
         params.append('nome', nome);
         params.append('email', email);
         params.append('whatsapp', whatsapp);
-        params.append('produto', produto);
+        params.append('produto', `HUB CARDS: ${produto}`);
 
+        // Envio para a Planilha Google (Silencioso)
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: params })
-        .catch(err => console.log("Erro de rede"));
+            .catch(err => console.log("Rede protegida"));
 
+        // Definição dos links seguros
         let linkFinal = (produto === "CARTÃO AURUM") 
             ? "https://backoffice.aurum.foundation/u/U20120" 
             : "https://www.ether.fi/refer/4065fdf5";
 
+        // Abertura em nova aba com proteção de integridade
         window.open(linkFinal, '_blank', 'noopener,noreferrer');
 
+        // Feedback visual tático no botão
         const btn = document.querySelector('button[onclick="enviarSolicitacaoHub()"]');
-        btn.innerHTML = "ACESSO LIBERADO!";
-        btn.style.background = "#059669"; 
+        if (btn) {
+            btn.innerHTML = "✅ ACESSO LIBERADO!";
+            btn.style.background = "#059669"; 
+        }
     }
-
     // 2. NOTIFICAÇÃO WHATSAPP
     setTimeout(() => {
         const notify = document.getElementById('notify-hub');

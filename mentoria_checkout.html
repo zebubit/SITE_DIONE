@@ -9,10 +9,20 @@
       gtag('config', 'G-CR8X94R6J6');
     </script>
 
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://cdn.tailwindcss.com;
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                   font-src https://fonts.gstatic.com;
+                   img-src 'self' https: data:;
+                   connect-src 'self' https://script.google.com https://www.google-analytics.com;">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout Mentoria | Dione Folador</title>
     
+    <link rel="icon" type="image/webp" href="SITE33.webp">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
@@ -98,8 +108,8 @@
         <div class="space-y-4">
             <input type="text" id="lead-nome" placeholder="Seu Nome Completo" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-white">
             <input type="email" id="lead-email" placeholder="Seu Melhor E-mail" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-white">
+            <input type="tel" id="lead-whatsapp" placeholder="WhatsApp para contato" class="w-full bg-white/5 border border-white/10 p-4 rounded-2xl focus:border-amber-500 outline-none transition text-white">
         </div>
-            <input type="tel" id="lead-whatsapp" placeholder="WhatsApp para contato" class="w-full bg-white/5 border border-white/10 p-5 rounded-2xl focus:border-amber-500 outline-none transition text-white">
     </div>
 
     <div class="max-w-7xl mx-auto subir-sessao">
@@ -204,6 +214,7 @@
             window.open(urlWhats, '_blank', 'noopener,noreferrer');
         }
     }
+    
 </script>
 </body>
 </html>
